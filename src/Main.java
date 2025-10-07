@@ -65,6 +65,10 @@ public class Main {
                 player1Selection = scanner.nextInt();
             }
             board.makeSelection(player1Selection, player1.getSymbol());
+            if(board.checkWinner()) {
+                board.setWinner(player1Name);
+            }
+
             board.printBoard();
 
 //            Player 2's turn
@@ -75,10 +79,11 @@ public class Main {
                 player2Selection = scanner.nextInt();
             }
             board.makeSelection(player2Selection, player2.getSymbol());
+            if(board.checkWinner()) {
+                board.setWinner(player2Name);
+            }
             board.printBoard();
-
-//            if()
         }
-
+        System.out.printf("%s has won. Congratulations! To play again, restart the console.", board.getWinner());
     }
 }
