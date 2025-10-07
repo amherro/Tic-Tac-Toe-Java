@@ -2,10 +2,12 @@ import java.util.Arrays;
 
 public class Board {
     private String[][] board = new String[3][3];
+    private String winner;
+
 
     public String[][] makeSelection(int selection, String symbol) {
 //        Check if space has already been taken. If not, put player symbol at that space.
-        if() {
+        if(true) {
             switch(selection) {
                 case 1:
                     board[0][0] = symbol;
@@ -41,8 +43,33 @@ public class Board {
         return board;
     }
 
-    public void printBoard(Board board) {
-        System.out.println((board));
+    public void printBoard() {
+        for(int i = 0; i < board.length; i++) {
+           for(int j = 0; j < board[0].length; j++) {
+               if (board[i][j] == null) {
+                   board[i][j] = " ";
+               }
+           }
+        }
+        for (String[] strings : board) {
+            System.out.println(Arrays.toString(strings));
+        }
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
+    }
+
+    public String checkWinner() {
+        if((board[0][0].equalsIgnoreCase("X") && board[0][1].equalsIgnoreCase("X") && board[0][2].equalsIgnoreCase("X"))) {
+            return "X";
+        } else {
+            return null;
+        }
     }
 }
 

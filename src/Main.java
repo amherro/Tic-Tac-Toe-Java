@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 
 public class Main {
-
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Board board = new Board();
@@ -14,6 +12,7 @@ public class Main {
         String player1Name;
         String player2Name;
         int rounds = 0;
+
 
         System.out.println("Welcome to Tic-Tac-Toe in Java.");
         System.out.println("Player 1: What is your name?");
@@ -27,7 +26,7 @@ public class Main {
         player1.setSymbol(scanner.next());
         while(!player1.getSymbol().equalsIgnoreCase("X") && !player1.getSymbol().equalsIgnoreCase("O")) {
             System.out.println("Please pick either X's or O's");
-            player1.setSymbol(scanner.next());
+            player1.setSymbol(scanner.next().toUpperCase());
         }
 
         System.out.println("Player 2, what is your name?");
@@ -56,18 +55,30 @@ public class Main {
             System.out.println(Arrays.toString(exampleBoard[i]));
         }
 
-        System.out.println("Player 1, please select a tile: ");
 
+        while(board.getWinner() == null) {
+//            Player 1's turn
+            System.out.printf("%s, please select a tile: \n", player1Name);
+            int player1Selection = scanner.nextInt();
+            while(player1Selection <= 0 || player1Selection > 9) {
+                System.out.println("Error: Please select a valid tile 1-9");
+                player1Selection = scanner.nextInt();
+            }
+            board.makeSelection(player1Selection, player1.getSymbol());
+            board.printBoard();
 
-        int player1Selection = scanner.nextInt();
-        while(player1Selection <= 0 || player1Selection > 9) {
-            System.out.println("Error: Please select a valid tile 1-9");
-            player1Selection = scanner.nextInt();
+//            Player 2's turn
+            System.out.printf("%s, please select a tile: \n", player2Name);
+            int player2Selection = scanner.nextInt();
+            while(player2Selection <= 0 || player2Selection > 9) {
+                System.out.println("Error: Please select a valid tile 1-9");
+                player2Selection = scanner.nextInt();
+            }
+            board.makeSelection(player2Selection, player2.getSymbol());
+            board.printBoard();
+
+//            if()
         }
-
-        board.makeSelection(player1Selection, player1.getSymbol());
-
-//        board.printBoard();
 
     }
 }
